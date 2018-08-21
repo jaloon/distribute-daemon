@@ -1,0 +1,21 @@
+<assembly>
+    <id>jar</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <!-- 打包的文件不包含项目目录，包下直接是文件 -->
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <!-- jar无须处理依赖包 -->
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>/lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/classes</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

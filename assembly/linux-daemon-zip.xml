@@ -1,0 +1,39 @@
+<assembly>
+	<id>linux-daemon</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>${file.separator}lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<!-- 源目录，此处是把编译出来的jar文件都输出到根目录下 -->
+			<directory>${project.build.directory}</directory>
+			<includes>
+				<include>${project.build.finalName}.jar</include>
+			</includes>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+        <fileSet>
+            <directory>${project.basedir}</directory>
+            <includes>
+                <include>service.properties</include>
+            </includes>
+            <outputDirectory>${file.separator}</outputDirectory>
+        </fileSet>
+		<fileSet>
+			<!-- 此处是把daemon的脚本文件输出到根目录下的bin目录 -->
+			<directory>daemon${file.separator}linux</directory>
+			<includes>
+		        <include>distribute.sh</include>
+		        <include>set_auto_start.sh</include>
+		    </includes>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>
