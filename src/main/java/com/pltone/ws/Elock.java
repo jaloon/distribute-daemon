@@ -259,7 +259,7 @@ public class Elock {
 							logger.error("更新数据库：配送信息[{}]转发普利通成功。异常！\n{}", id, e.getMessage());
 							jdbcUtil.rollback();
 						}
-						logger.info("配送信息[{}[转发普利通服务器成功！", id);
+						logger.info("配送信息[{}]转发普利通服务器成功！", id);
 						return;
 					}
 					logger.error("第{}次转发配送信息[{}]到普利通服务器回复失败：{}", ++repeatCount, id, rtReply);
