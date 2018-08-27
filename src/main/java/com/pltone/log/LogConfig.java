@@ -13,23 +13,23 @@ import java.io.IOException;
 
 /**
  * 日志配置
- * 
+ *
  * @author chenlong
  * @version 1.0 2018-02-13
  */
 public class LogConfig {
-	private static final String CONVERSION_PATTERN = "[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%l]:%m%n";
-	private static final String DATE_PATTERN = "'_'yyyyMMdd'.log'";
-	private static final Logger LOG4J_ROOT_LOGGER = Logger.getRootLogger();
-	private static final Layout PATTERN_LAYOUT = new PatternLayout(CONVERSION_PATTERN);
+    private static final String CONVERSION_PATTERN = "[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%l]:%m%n";
+    private static final String DATE_PATTERN = "'_'yyyyMMdd'.log'";
+    private static final Logger LOG4J_ROOT_LOGGER = Logger.getRootLogger();
+    private static final Layout PATTERN_LAYOUT = new PatternLayout(CONVERSION_PATTERN);
 
-	private LogConfig() {
-	}
+    private LogConfig() {
+    }
 
     /**
      * 初始化log4j配置
      */
-	public static final void initLog4j() {
+    public static final void initLog4j() {
         // 设置日志最低输出级别
         LOG4J_ROOT_LOGGER.setLevel(Level.DEBUG);
 

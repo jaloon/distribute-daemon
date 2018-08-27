@@ -8,21 +8,21 @@ import com.pltone.ws.ElockServer;
 
 /**
  * 启动器
- * 
+ *
  * @author chenlong
  * @version 1.0 2018-02-12
  */
 public class Main {
 
-	public static void main(String[] args) {
-	    init();
-	    start();
-	}
+    public static void main(String[] args) {
+        init();
+        start();
+    }
 
     /**
      * 初始化程序
      */
-	public static void init() {
+    public static void init() {
         LogConfig.initLog4j();
         FilePathInit.init();
         // LogConfig.addDailyFileAppender();
@@ -33,7 +33,7 @@ public class Main {
     /**
      * 启动程序
      */
-	public static void start() {
+    public static void start() {
         ElockServer.INSTANCE.startService();
     }
 
@@ -41,7 +41,7 @@ public class Main {
      * 关闭程序
      */
     public static void stop() {
-	    ElockServer.INSTANCE.stopService();
+        ElockServer.INSTANCE.stopService();
     }
 
 }

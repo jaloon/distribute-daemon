@@ -108,9 +108,8 @@ public class JdbcUtil {
 
 	/**
 	 * 数据源配置
-	 * 
-	 * @param dbConfigFilePath
-	 *            数据源配置文件路径
+	 *
+	 * @param dbConfigFilePath 数据源配置文件路径
 	 */
 	public void dbConfig(String dbConfigFilePath) {
 		try {
@@ -140,9 +139,8 @@ public class JdbcUtil {
 
 	/**
 	 * 建立sqlite数据库连接
-	 * 
-	 * @param sqliteDbName
-	 *            sqlite数据库名称
+	 *
+	 * @param sqliteDbName sqlite数据库名称
 	 */
 	public void createSqliteConnection(String sqliteDbName) {
 		try {
@@ -159,9 +157,8 @@ public class JdbcUtil {
 
 	/**
 	 * 实例化预编译的 SQL语句的对象
-	 * 
-	 * @param sql
-	 *            SQL语句
+	 *
+	 * @param sql SQL语句
 	 */
 	public void createPrepareStatement(String sql) {
 		try {
@@ -179,11 +176,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>boolean</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>BIT</code> 或 </code>BOOLEAN</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setBoolean(int parameterIndex, boolean x) throws SQLException {
@@ -193,11 +188,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>byte</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>TINYINT</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setByte(int parameterIndex, byte x) throws SQLException {
@@ -207,11 +200,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>short</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>SMALLINT</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setShort(int parameterIndex, short x) throws SQLException {
@@ -221,11 +212,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>int</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>INTEGER</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setInt(int parameterIndex, int x) throws SQLException {
@@ -235,11 +224,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>long</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>BIGINT</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setLong(int parameterIndex, long x) throws SQLException {
@@ -249,11 +236,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>float</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>REAL</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setFloat(int parameterIndex, float x) throws SQLException {
@@ -263,11 +248,9 @@ public class JdbcUtil {
 	/**
 	 * 将指定参数设置为给定 Java </code>double</code> 值。在将此值发送到数据库时，驱动程序将它转换成一个 SQL
 	 * </code>DOUBLE</code> 值。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setDouble(int parameterIndex, double x) throws SQLException {
@@ -278,11 +261,9 @@ public class JdbcUtil {
 	 * 将指定参数设置为给定 Java <code>String</code> 值。在将此值发送给数据库时，驱动程序将它转换成一个 SQL
 	 * <code>VARCHAR</code> 或 <code>LONGVARCHAR</code> 值（取决于该参数相对于驱动程序在
 	 * <code>VARCHAR</code> 值上的限制的大小）。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setString(int parameterIndex, String x) throws SQLException {
@@ -293,11 +274,9 @@ public class JdbcUtil {
 	 * 将指定参数设置为给定 Java byte 数组。在将此值发送给数据库时，驱动程序将它转换成一个 SQL
 	 * <code>VARBINARY</code> 或 <code>LONGVARBINARY</code> 值（取决于该参数相对于驱动程序在
 	 * <code>VARBINARY</code> 值上的限制的大小）。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setBytes(int parameterIndex, byte x[]) throws SQLException {
@@ -307,30 +286,24 @@ public class JdbcUtil {
 	/**
 	 * <p>
 	 * 使用给定对象设置指定参数的值。第二个参数必须是 Object 类型；所以，应该对内置类型使用 java.lang 的等效对象。
-	 * 
 	 * <p>
 	 * JDBC 规范指定了一个从 Java <code>Object</code> 类型到 SQL
 	 * 类型的标准映射关系。在发送到数据库之前，给定参数将被转换为相应 SQL 类型。
-	 * 
 	 * <p>
 	 * 注意，通过使用特定于驱动程序的 Java 类型，此方法可用于传递特定于数据库的抽象数据类型。如果对象是实现
 	 * <code>SQLData</code> 接口的类，则 JDBC 驱动程序应该调用 <code>SQLData.writeSQL</code>
 	 * 方法将它写入 SQL 数据流中。另一方面，如果该对象是实现
 	 * <code>Ref</code>、<code>Blob</code>、<code>Clob</code>、<code>NClob</code>、<code>Struct</code>、<code>java.net.URL</code>、<code>RowId</code>、<code>SQLXML</code>
 	 * 或 <code>Array</code> 的类，则驱动程序应该将它作为相应 SQL 类型的值传递给数据库。
-	 * 
-	 * <p>
+	 *
 	 * <b>注：</b>并非所有的数据库都允许将非类型 Null 发送给后端。为了获得最大的可移植性，应该使用 <code>setNull</code>
 	 * 或 <code>setObject(int parameterIndex, Object x, int sqlType)</code> 方法替代
 	 * <code>setObject(int parameterIndex, Object x)</code>。
-	 * 
-	 * <p>
+	 *
 	 * <b>注：</b>如果出现混淆，例如，如果该对象是实现多个上述指定接口的类，则此方法抛出异常。
-	 * 
-	 * @param parameterIndex
-	 *            第一个参数是 1，第二个参数是 2，……
-	 * @param x
-	 *            参数值
+	 *
+	 * @param parameterIndex 第一个参数是 1，第二个参数是 2，……
+	 * @param x              参数值
 	 * @throws SQLException
 	 */
 	public void setObject(int parameterIndex, Object x) throws SQLException {
@@ -340,7 +313,7 @@ public class JdbcUtil {
 	/**
 	 * 在 PreparedStatement 对象中执行 SQL 语句，该语句必须是一个 SQL 数据操作语言（Data Manipulation
 	 * Language，DML）语句，比如 INSERT、UPDATE 或 DELETE 语句；或者是无返回内容的 SQL 语句，比如 DDL 语句。
-	 * 
+	 *
 	 * @return (1) SQL 数据操作语言 (DML) 语句的行数 (2) 对于无返回内容的 SQL 语句，返回 0
 	 * @throws SQLException
 	 */
@@ -350,9 +323,8 @@ public class JdbcUtil {
 
 	/**
 	 * 获取自增ID
-	 * 
-	 * @param columnIndex 
-	 *            the first column is 1, the second is 2, ...
+	 *
+	 * @param columnIndex the first column is 1, the second is 2, ...
 	 * @return (1) 成功插入一条数据，返回其当前记录的自增ID (2) 插入失败，返回-1
 	 * @throws SQLException
 	 */
@@ -414,11 +386,9 @@ public class JdbcUtil {
 
 	/**
 	 * 增删改
-	 * 
-	 * @param sql
-	 *            SQL语句
-	 * @param parameters
-	 *            不定长度参数
+	 *
+	 * @param sql        SQL语句
+	 * @param parameters 不定长度参数
 	 */
 	public void update(String sql, Object... parameters) {
 		try {
@@ -440,9 +410,8 @@ public class JdbcUtil {
 
 	/**
 	 * 根据表名查询最大自增ID
-	 * 
-	 * @param tableName
-	 *            表名
+	 *
+	 * @param tableName 表名
 	 * @return 最大自增ID
 	 */
 	public int selectMaxId(String tableName) {
@@ -461,9 +430,8 @@ public class JdbcUtil {
 
 	/**
 	 * 查询需要转发的XML
-	 * 
-	 * @param sql
-	 *            SQL语句
+	 *
+	 * @param sql SQL语句
 	 * @return 需要转发的XML
 	 */
 	public List<Map<String, Object>> selectForwordXml(String sql) {

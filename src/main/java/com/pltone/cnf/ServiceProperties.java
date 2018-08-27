@@ -61,90 +61,115 @@ public class ServiceProperties {
     public static String getServiceIp() {
         return serviceIp;
     }
+
     public static void setServiceIp(String serviceIp) {
         ServiceProperties.serviceIp = serviceIp;
         properties.setProperty(NAME_SERVICE_IP, serviceIp);
     }
+
     public static int getServicePort() {
         return servicePort;
     }
+
     public static void setServicePort(int servicePort) {
         ServiceProperties.servicePort = servicePort;
         properties.setProperty(NAME_SERVICE_PORT, Integer.toString(servicePort));
     }
+
     public static String getServicePath() {
         return servicePath;
     }
+
     public static void setServicePath(String servicePath) {
         ServiceProperties.servicePath = servicePath;
         properties.setProperty(NAME_SERVICE_PATH, servicePath);
     }
+
     public static boolean isRtForward() {
         return rtForward;
     }
+
     public static void setRtForward(boolean rtForward) {
         ServiceProperties.rtForward = rtForward;
         properties.setProperty(NAME_RT_FORWARD, rtForward ? "1" : "0");
     }
+
     public static String getRtHttp() {
         return rtHttp;
     }
+
     public static void setRtHttp(String rtHttp) {
         ServiceProperties.rtHttp = rtHttp;
         properties.setProperty(NAME_RT_HTTP, rtHttp);
     }
+
     public static String getRtIp() {
         return rtIp;
     }
+
     public static void setRtIp(String rtIp) {
         ServiceProperties.rtIp = rtIp;
         properties.setProperty(NAME_RT_IP, rtIp);
     }
+
     public static int getRtPort() {
         return rtPort;
     }
+
     public static void setRtPort(int rtPort) {
         ServiceProperties.rtPort = rtPort;
         properties.setProperty(NAME_RT_PORT, Integer.toString(rtPort));
     }
+
     public static String getRtPath() {
         return rtPath;
     }
+
     public static void setRtPath(String rtPath) {
         ServiceProperties.rtPath = rtPath;
         properties.setProperty(NAME_RT_PATH, rtPath);
     }
+
     public static boolean isPltForward() {
         return pltForward;
     }
+
     public static void setPltForward(boolean pltForward) {
         ServiceProperties.pltForward = pltForward;
         properties.setProperty(NAME_PLT_FORWARD, pltForward ? "1" : "0");
     }
+
     public static String getPltHttp() {
         return pltHttp;
     }
+
     public static void setPltHttp(String pltHttp) {
         ServiceProperties.pltHttp = pltHttp;
         properties.setProperty(NAME_PLT_HTTP, pltHttp);
     }
+
     public static String getPltIp() {
         return pltIp;
     }
+
     public static void setPltIp(String pltIp) {
         ServiceProperties.pltIp = pltIp;
         properties.setProperty(NAME_PLT_IP, pltIp);
     }
+
     public static int getPltPort() {
         return pltPort;
     }
+
     public static void setPltPort(int pltPort) {
         ServiceProperties.pltPort = pltPort;
         properties.setProperty(NAME_PLT_PORT, Integer.toString(pltPort));
     }
+
     public static String getPltPath() {
         return pltPath;
     }
+
     public static void setPltPath(String pltPath) {
         ServiceProperties.pltPath = pltPath;
         properties.setProperty(NAME_PLT_PATH, pltPath);
