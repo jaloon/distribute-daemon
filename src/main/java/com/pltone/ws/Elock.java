@@ -48,35 +48,35 @@ public class Elock {
     private String pltWsAddr;
     private ExecutorService cachedThreadPool;
 
-    public boolean isForwordRt() {
+    public final boolean isForwordRt() {
         return forwordRt;
     }
 
-    public void setForwordRt(boolean forwordRt) {
+    public final void setForwordRt(boolean forwordRt) {
         this.forwordRt = forwordRt;
     }
 
-    public boolean isForwordPlt() {
+    public final boolean isForwordPlt() {
         return forwordPlt;
     }
 
-    public void setForwordPlt(boolean forwordPlt) {
+    public final void setForwordPlt(boolean forwordPlt) {
         this.forwordPlt = forwordPlt;
     }
 
-    public String getRtWsAddr() {
+    public final String getRtWsAddr() {
         return rtWsAddr;
     }
 
-    public void setRtWsAddr(String rtWsAddr) {
+    public final void setRtWsAddr(String rtWsAddr) {
         this.rtWsAddr = rtWsAddr;
     }
 
-    public String getPltWsAddr() {
+    public final String getPltWsAddr() {
         return pltWsAddr;
     }
 
-    public void setPltWsAddr(String pltWsAddr) {
+    public final void setPltWsAddr(String pltWsAddr) {
         this.pltWsAddr = pltWsAddr;
     }
 
@@ -179,7 +179,7 @@ public class Elock {
      * @param distributeXmlStr {@link String} 配送信息XML文本
      * @param id               {@link int} 数据库记录ID
      */
-    public void forwordToRt(String distributeXmlStr, int id) {
+    public final void forwordToRt(String distributeXmlStr, int id) {
         if (forwordRt) {
             cachedThreadPool.execute(() -> {
                 JdbcUtil jdbcUtil = new JdbcUtil();
@@ -234,7 +234,7 @@ public class Elock {
      * @param distributeXmlStr {@link String} 配送信息XML文本
      * @param id               {@link int} 数据库记录ID
      */
-    public void forwordToPlt(String distributeXmlStr, int id) {
+    public final void forwordToPlt(String distributeXmlStr, int id) {
         if (forwordPlt) {
             cachedThreadPool.execute(() -> {
                 JdbcUtil jdbcUtil = new JdbcUtil();
@@ -286,7 +286,7 @@ public class Elock {
     /**
      * 关闭线程池
      */
-    public void closeThreadPool() {
+    public final void closeThreadPool() {
         if (cachedThreadPool != null) {
             cachedThreadPool.shutdown();
         }

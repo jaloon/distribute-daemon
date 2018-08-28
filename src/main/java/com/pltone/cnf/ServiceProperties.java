@@ -26,7 +26,7 @@ public class ServiceProperties {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceProperties.class);
     private static final String PROP_FILE_PATH = FilePathInit.getPropFilePath();
-    private static final String NAME_SERVICE_IP = "service.ip";
+    // private static final String NAME_SERVICE_IP = "service.ip";
     private static final String NAME_SERVICE_PORT = "service.port";
     private static final String NAME_SERVICE_PATH = "service.path";
     private static final String NAME_RT_FORWARD = "ruitong.forward";
@@ -42,7 +42,7 @@ public class ServiceProperties {
 
     private static Properties properties;
 
-    private static String serviceIp;
+    // private static String serviceIp;
     private static int servicePort;
     private static String servicePath;
 
@@ -58,14 +58,14 @@ public class ServiceProperties {
     private static int pltPort;
     private static String pltPath;
 
-    public static String getServiceIp() {
-        return serviceIp;
-    }
-
-    public static void setServiceIp(String serviceIp) {
-        ServiceProperties.serviceIp = serviceIp;
-        properties.setProperty(NAME_SERVICE_IP, serviceIp);
-    }
+    // public static String getServiceIp() {
+    //     return serviceIp;
+    // }
+    //
+    // public static void setServiceIp(String serviceIp) {
+    //     ServiceProperties.serviceIp = serviceIp;
+    //     properties.setProperty(NAME_SERVICE_IP, serviceIp);
+    // }
 
     public static int getServicePort() {
         return servicePort;
@@ -180,7 +180,7 @@ public class ServiceProperties {
             properties = new Properties();
             properties.load(new FileInputStream(PROP_FILE_PATH));
 
-            serviceIp = properties.getProperty(NAME_SERVICE_IP, DEFAUT_IP);
+            // serviceIp = properties.getProperty(NAME_SERVICE_IP, DEFAUT_IP);
             String _servicePort = properties.getProperty(NAME_SERVICE_PORT);
             if (_servicePort == null || _servicePort.trim().isEmpty()) {
                 servicePort = DEFAUT_PORT;

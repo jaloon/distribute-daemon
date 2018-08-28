@@ -28,7 +28,9 @@ public enum ElockServer {
      */
     public void startService() {
         logger.info("WebService start...");
-        String address = new StringBuffer("http://").append(ServiceProperties.getServiceIp()).append(':')
+        String publishAddr = new StringBuffer().append("http://0.0.0.0:").append(ServiceProperties.getServicePort())
+                .append('/').append(ServiceProperties.getServicePath()).toString();
+        String realAddr = new StringBuffer("http://").append(ServiceProperties.DEFAUT_IP).append(':')
                 .append(ServiceProperties.getServicePort()).append('/')
                 .append(ServiceProperties.getServicePath()).toString();
         String rtWsAddr = new StringBuffer().append(ServiceProperties.getRtHttp()).append("://")
@@ -45,11 +47,11 @@ public enum ElockServer {
         elock.setPltWsAddr(pltWsAddr);
 
         // 启动服务
-        serviceStart = startService(address);
+        serviceStart = startService(publishAddr);
         if (!serviceStart) {
            return;
         }
-        logger.info("转发服务器地址: {}", address);
+        logger.info("转发服务器地址: {}", realAddr);
         if (ServiceProperties.isRtForward()) {
             logger.info("瑞通接口地址: {}", rtWsAddr);
         }
