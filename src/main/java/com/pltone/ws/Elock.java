@@ -152,10 +152,10 @@ public class Elock {
                 } catch (SQLException e) {
                     logger.error("数据库存储配送信息异常！\n{}", e.getMessage());
                     jdbcUtil.rollback();
-                    jdbcUtil.close();
                     return "<Message>fail：配送信息存储异常</Message>";
+                } finally {
+                    jdbcUtil.close();
                 }
-                jdbcUtil.close();
                 if (id > 0) {
                     // 转发配送信息
                     forwordToRt(txt, id);
@@ -199,6 +199,8 @@ public class Elock {
                         } catch (SQLException e) {
                             logger.error("更新数据库：配送信息[{}]转发瑞通成功。异常！\n{}", id, e.getMessage());
                             jdbcUtil.rollback();
+                        } finally {
+                            jdbcUtil.close();
                         }
                         logger.info("配送信息[{}]转发瑞通服务器成功！", id);
                         return;
@@ -221,8 +223,9 @@ public class Elock {
                 } catch (SQLException e) {
                     logger.error("更新数据库：配送信息[{}]转发瑞通失败。异常！\n{}", id, e.getMessage());
                     jdbcUtil.rollback();
+                } finally {
+                    jdbcUtil.close();
                 }
-                jdbcUtil.close();
                 logger.error("配送信息[{}]转发瑞通服务器失败！", id);
             });
         }
@@ -254,6 +257,8 @@ public class Elock {
                         } catch (SQLException e) {
                             logger.error("更新数据库：配送信息[{}]转发普利通成功。异常！\n{}", id, e.getMessage());
                             jdbcUtil.rollback();
+                        } finally {
+                            jdbcUtil.close();
                         }
                         logger.info("配送信息[{}]转发普利通服务器成功！", id);
                         return;
@@ -276,8 +281,9 @@ public class Elock {
                 } catch (SQLException e) {
                     logger.error("更新数据库：配送信息[{}]转发普利通失败。异常！\n{}", id, e.getMessage());
                     jdbcUtil.rollback();
+                } finally {
+                    jdbcUtil.close();
                 }
-                jdbcUtil.close();
                 logger.error("配送信息[{}]转发普利通服务器失败！", id);
             });
         }
