@@ -161,7 +161,7 @@ public class Elock {
                     forwordToRt(txt, id);
                     forwordToPlt(txt, id);
                 }
-                logger.info("接收配单成功！");
+                logger.info("接收配送单[{}]成功！", id);
                 return "<Message>success</Message>";
             } else {
                 logger.warn("配送信息XML文本未包含<dlists>标签！");
