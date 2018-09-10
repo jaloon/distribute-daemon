@@ -58,20 +58,6 @@ public class JarUtil {
         return clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
     }
 
-    public static void main(String[] args) {
-        String path = System.getProperty("user.dir") + File.separator + "distribute-2.1.0.jar";
-        File file = new File(path);
-        System.out.println(file.exists());
-        String name = "test";
-        String content = "这是测试数据qqdwqdew";
-        try {
-            writeFileToJar(path, name, content.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     /**
      * 修改jar包里的文件或者添加文件
      *
