@@ -7,7 +7,7 @@
     <groupId>com.pltone</groupId>
     <artifactId>distribute</artifactId>
     <packaging>jar</packaging>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 
     <name>distribute</name>
     <url>http://www.pltone.com</url>
