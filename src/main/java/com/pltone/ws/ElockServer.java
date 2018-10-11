@@ -1,7 +1,9 @@
 package com.pltone.ws;
 
 import com.pltone.cnf.ServiceProperties;
-import com.pltone.job.ForwordSchedule;
+import com.pltone.job.ForwardSchedule;
+import com.pltone.job.OverdueLogDeleteTask;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,23 +22,24 @@ public enum ElockServer {
     private static final Logger logger = LoggerFactory.getLogger(ElockServer.class);
     private Elock elock;
     private Endpoint endpoint;
-    private ScheduledExecutorService service;
-    private boolean serviceStart;
+    private ScheduledExecutorService forwardSchedule;
+    private ScheduledExecutorService overdueLogDelTask;
+    private boolean serviceStartFlag;
 
     /**
      * 启动服务
      */
     public void startService() {
         logger.info("WebService start...");
-        String publishAddr = new StringBuffer().append("http://0.0.0.0:").append(ServiceProperties.getServicePort())
+        String publishAddr = new StringBuilder().append("http://0.0.0.0:").append(ServiceProperties.getServicePort())
                 .append('/').append(ServiceProperties.getServicePath()).toString();
-        String realAddr = new StringBuffer("http://").append(ServiceProperties.DEFAUT_IP).append(':')
+        String realAddr = new StringBuilder("http://").append(ServiceProperties.DEFAULT_IP).append(':')
                 .append(ServiceProperties.getServicePort()).append('/')
                 .append(ServiceProperties.getServicePath()).toString();
-        String rtWsAddr = new StringBuffer().append(ServiceProperties.getRtHttp()).append("://")
+        String rtWsAddr = new StringBuilder().append(ServiceProperties.getRtHttp()).append("://")
                 .append(ServiceProperties.getRtIp()).append(':').append(ServiceProperties.getRtPort())
                 .append('/').append(ServiceProperties.getRtPath()).toString();
-        String pltWsAddr = new StringBuffer().append(ServiceProperties.getPltHttp()).append("://")
+        String pltWsAddr = new StringBuilder().append(ServiceProperties.getPltHttp()).append("://")
                 .append(ServiceProperties.getPltIp()).append(':').append(ServiceProperties.getPltPort())
                 .append('/').append(ServiceProperties.getPltPath()).toString();
 
@@ -47,9 +50,9 @@ public enum ElockServer {
         elock.setPltWsAddr(pltWsAddr);
 
         // 启动服务
-        serviceStart = startService(publishAddr);
-        if (!serviceStart) {
-           return;
+        serviceStartFlag = startService(publishAddr);
+        if (!serviceStartFlag) {
+            return;
         }
         logger.info("转发服务器地址: {}", realAddr);
         if (ServiceProperties.isRtForward()) {
@@ -70,7 +73,8 @@ public enum ElockServer {
     private boolean startService(String address) {
         try {
             endpoint = Endpoint.publish(address, elock);
-            service = ForwordSchedule.executeForwordSchedule(elock);
+            forwardSchedule = ForwardSchedule.executeForwardSchedule(elock);
+            overdueLogDelTask = OverdueLogDeleteTask.execute();
             return true;
         } catch (Exception e) {
             logger.error("启动服务异常：\n{}", e.toString());
@@ -82,10 +86,11 @@ public enum ElockServer {
      * 关闭服务
      */
     public void stopService() {
-        if (serviceStart) {
+        if (serviceStartFlag) {
             try {
                 endpoint.stop();
-                service.shutdown();
+                forwardSchedule.shutdown();
+                overdueLogDelTask.shutdown();
                 elock.closeThreadPool();
                 logger.info("WebService stopped.");
             } catch (Exception e) {

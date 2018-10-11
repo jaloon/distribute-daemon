@@ -16,8 +16,8 @@ public interface ElockSoap {
     /**
      * 配送函数
      *
-     * @param txt
-     * @return
+     * @param txt xml文本
+     * @return 接口调用结果
      */
     @WebMethod(operationName = "SetPlan")
     @WebResult(name = "SetPlanResult", targetNamespace = "http://www.cnpc.com/")

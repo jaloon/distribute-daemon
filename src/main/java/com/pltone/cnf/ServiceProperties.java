@@ -1,6 +1,7 @@
 package com.pltone.cnf;
 
 import com.pltone.init.FilePathInit;
+import com.pltone.util.FileUtil;
 import com.pltone.util.NetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +19,12 @@ import java.util.Properties;
  * @version 1.0 2018-08-17
  */
 public class ServiceProperties {
-    public static final String DEFAUT_HTTP = "http";
-    public static final String DEFAUT_IP = NetUtil.getLocalHostLANAddress().getHostAddress();
-    public static final int DEFAUT_PORT = 80;
-    public static final String DEFAUT_PATH = "Elock_Service.asmx";
-    public static final boolean DEFAUT_FORWARD = false;
+    public static final String DEFAULT_HTTP = "http";
+    public static final String DEFAULT_IP = NetUtil.getLocalIp();
+    public static final int DEFAULT_PORT = 80;
+    public static final String DEFAULT_PATH = "Elock_Service.asmx";
+    public static final boolean DEFAULT_FORWARD = false;
+    public static final long DEFAULT_LOG_OVERDUE = 60L;
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceProperties.class);
     private static final String PROP_FILE_PATH = FilePathInit.getPropFilePath();
@@ -39,6 +41,7 @@ public class ServiceProperties {
     private static final String NAME_PLT_IP = "pltone.ip";
     private static final String NAME_PLT_PORT = "pltone.port";
     private static final String NAME_PLT_PATH = "pltone.path";
+    private static final String NAME_LOG_OVERDUE = "log.overdue";
 
     private static Properties properties;
 
@@ -57,6 +60,8 @@ public class ServiceProperties {
     private static String pltIp;
     private static int pltPort;
     private static String pltPath;
+
+    private static long logOverdue;
 
     // public static String getServiceIp() {
     //     return serviceIp;
@@ -175,52 +180,37 @@ public class ServiceProperties {
         properties.setProperty(NAME_PLT_PATH, pltPath);
     }
 
+    public static long getLogOverdue() {
+        return logOverdue;
+    }
+
+    public static void setLogOverdue(long logOverdue) {
+        ServiceProperties.logOverdue = logOverdue;
+        properties.setProperty(NAME_LOG_OVERDUE, Long.toString(logOverdue));
+    }
+
     public static void init() {
         try {
             properties = new Properties();
             properties.load(new FileInputStream(PROP_FILE_PATH));
 
-            // serviceIp = properties.getProperty(NAME_SERVICE_IP, DEFAUT_IP);
-            String _servicePort = properties.getProperty(NAME_SERVICE_PORT);
-            if (_servicePort == null || _servicePort.trim().isEmpty()) {
-                servicePort = DEFAUT_PORT;
-            } else {
-                servicePort = Integer.parseInt(_servicePort, 10);
-            }
-            servicePath = properties.getProperty(NAME_SERVICE_PATH, DEFAUT_PATH);
+            // serviceIp = properties.getProperty(NAME_SERVICE_IP, DEFAULT_IP);
+            servicePort = FileUtil.getIntProp(properties, NAME_SERVICE_PORT, DEFAULT_PORT);
+            servicePath = properties.getProperty(NAME_SERVICE_PATH, DEFAULT_PATH);
 
-            String _rtForward = properties.getProperty(NAME_RT_FORWARD);
-            if (_rtForward == null || _rtForward.trim().isEmpty()) {
-                rtForward = DEFAUT_FORWARD;
-            } else {
-                rtForward = _rtForward.equals("1");
-            }
-            rtHttp = properties.getProperty(NAME_RT_HTTP, DEFAUT_HTTP);
-            rtIp = properties.getProperty(NAME_RT_IP, DEFAUT_IP);
-            String _rtPort = properties.getProperty(NAME_RT_PORT);
-            if (_rtPort == null || _rtPort.trim().isEmpty()) {
-                rtPort = DEFAUT_PORT;
-            } else {
-                rtPort = Integer.parseInt(_rtPort, 10);
-            }
-            rtPath = properties.getProperty(NAME_RT_PATH, DEFAUT_PATH);
+            rtForward = FileUtil.getBoolProp(properties, NAME_RT_FORWARD, DEFAULT_FORWARD);
+            rtHttp = properties.getProperty(NAME_RT_HTTP, DEFAULT_HTTP);
+            rtIp = properties.getProperty(NAME_RT_IP, DEFAULT_IP);
+            rtPort = FileUtil.getIntProp(properties, NAME_RT_PORT, DEFAULT_PORT);
+            rtPath = properties.getProperty(NAME_RT_PATH, DEFAULT_PATH);
 
-            String _pltForward = properties.getProperty(NAME_PLT_FORWARD);
-            if (_pltForward == null || _pltForward.trim().isEmpty()) {
-                pltForward = DEFAUT_FORWARD;
-            } else {
-                pltForward = _pltForward.equals("1");
-            }
-            pltHttp = properties.getProperty(NAME_PLT_HTTP, DEFAUT_HTTP);
-            pltIp = properties.getProperty(NAME_PLT_IP, DEFAUT_IP);
-            String _pltPort = properties.getProperty(NAME_PLT_PORT);
-            if (_pltPort == null || _pltPort.trim().isEmpty()) {
-                pltPort = DEFAUT_PORT;
-            } else {
-                pltPort = Integer.parseInt(_pltPort, 10);
-            }
-            pltPath = properties.getProperty(NAME_PLT_PATH, DEFAUT_PATH);
+            pltForward = FileUtil.getBoolProp(properties, NAME_PLT_FORWARD, DEFAULT_FORWARD);
+            pltHttp = properties.getProperty(NAME_PLT_HTTP, DEFAULT_HTTP);
+            pltIp = properties.getProperty(NAME_PLT_IP, DEFAULT_IP);
+            pltPort = FileUtil.getIntProp(properties, NAME_PLT_PORT, DEFAULT_PORT);
+            pltPath = properties.getProperty(NAME_PLT_PATH, DEFAULT_PATH);
 
+            logOverdue = FileUtil.getLongProp(properties, NAME_LOG_OVERDUE, DEFAULT_LOG_OVERDUE);
         } catch (IOException e) {
             logger.error("初始化配置异常！", e);
         }

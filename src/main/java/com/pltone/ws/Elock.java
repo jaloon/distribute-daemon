@@ -4,6 +4,7 @@ import com.pltone.init.SqliteDbInit;
 import com.pltone.util.JdbcUtil;
 import com.pltone.ws.client.ElockClient;
 import com.pltone.ws.constant.DistXmlNodeNameConst;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -15,6 +16,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.ws.soap.MTOM;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -22,26 +24,34 @@ import java.util.concurrent.Executors;
 
 /**
  * 物流配送WebService服务
- * 
+ *
  * @author chenlong
  * @version 1.0 2018-01-19
  */
 @WebService(name = "ElockSoap", serviceName = "Elock", portName = "ElockSoap", targetNamespace = "http://www.cnpc.com/")
 @MTOM
 public class Elock {
-	private static final Logger logger = LoggerFactory.getLogger(Elock.class);
-	private static final int FORWORD_REPEAT_MAX = 5;
-	private static final String REPLY_MESSAGE_SUCCESS = "<Message>success</Message>";
-	private static final String HEADER = "<TradeData>";
-	private static final String FOOTER = "</TradeData>";
-	/** 转发失败重发超时1分钟 */
-	private static final long FORWORD_TIMEOUT = 60000L;
-	/** 转发状态：0 未转发（默认） */
-	public static final int FORWORD_STATE_NONE = 0;
-	/** 转发状态：1 转发成功 */
-	public static final int FORWORD_STATE_DONE = 1;
-	/** 转发状态：2 转发失败 */
-    public static final int FORWORD_STATE_FAIL = 2;
+    private static final Logger logger = LoggerFactory.getLogger(Elock.class);
+    private static final int FORWORD_REPEAT_MAX = 5;
+    private static final String REPLY_MESSAGE_SUCCESS = "<Message>success</Message>";
+    private static final String HEADER = "<TradeData>";
+    private static final String FOOTER = "</TradeData>";
+    /**
+     * 转发失败重发超时1分钟
+     */
+    private static final long FORWORD_TIMEOUT = 60000L;
+    /**
+     * 转发状态：0 未转发（默认）
+     */
+    public static final int FORWORD_STATE_NONE = 0;
+    /**
+     * 转发状态：1 转发成功
+     */
+    private static final int FORWORD_STATE_DONE = 1;
+    /**
+     * 转发状态：2 转发失败
+     */
+    private static final int FORWORD_STATE_FAIL = 2;
     private boolean forwordRt;
     private boolean forwordPlt;
     private String rtWsAddr;
@@ -52,7 +62,7 @@ public class Elock {
         return forwordRt;
     }
 
-    public final void setForwordRt(boolean forwordRt) {
+    final void setForwordRt(boolean forwordRt) {
         this.forwordRt = forwordRt;
     }
 
@@ -60,7 +70,7 @@ public class Elock {
         return forwordPlt;
     }
 
-    public final void setForwordPlt(boolean forwordPlt) {
+    final void setForwordPlt(boolean forwordPlt) {
         this.forwordPlt = forwordPlt;
     }
 
@@ -68,7 +78,7 @@ public class Elock {
         return rtWsAddr;
     }
 
-    public final void setRtWsAddr(String rtWsAddr) {
+    final void setRtWsAddr(String rtWsAddr) {
         this.rtWsAddr = rtWsAddr;
     }
 
@@ -76,7 +86,7 @@ public class Elock {
         return pltWsAddr;
     }
 
-    public final void setPltWsAddr(String pltWsAddr) {
+    final void setPltWsAddr(String pltWsAddr) {
         this.pltWsAddr = pltWsAddr;
     }
 
@@ -292,7 +302,7 @@ public class Elock {
     /**
      * 关闭线程池
      */
-    public final void closeThreadPool() {
+    final void closeThreadPool() {
         if (cachedThreadPool != null) {
             cachedThreadPool.shutdown();
         }

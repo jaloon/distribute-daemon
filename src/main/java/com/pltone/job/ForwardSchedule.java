@@ -3,6 +3,7 @@ package com.pltone.job;
 import com.pltone.init.SqliteDbInit;
 import com.pltone.util.JdbcUtil;
 import com.pltone.ws.Elock;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,8 +19,8 @@ import java.util.concurrent.TimeUnit;
  * @author chenlong
  * @version 1.0 2018-02-27
  */
-public class ForwordSchedule {
-    private static final Logger logger = LoggerFactory.getLogger(ForwordSchedule.class);
+public class ForwardSchedule {
+    private static final Logger logger = LoggerFactory.getLogger(ForwardSchedule.class);
     private static final String SQL_RT = new StringBuilder()
             .append("SELECT\n")
             .append("  \"id\",\n")
@@ -46,7 +47,7 @@ public class ForwordSchedule {
      *
      * @param elock {@link Elock}
      */
-    public static ScheduledExecutorService executeForwordSchedule(Elock elock) {
+    public static ScheduledExecutorService executeForwardSchedule(Elock elock) {
         Runnable task = () -> {
             // task to run goes here
             JdbcUtil jdbcUtil = new JdbcUtil();

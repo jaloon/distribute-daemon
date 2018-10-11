@@ -24,19 +24,32 @@ public class NetUtil {
     /**
      * 获取本机IP地址
      *
+     * @return {@link String} 本机IP地址
+     */
+    public static String getLocalIp() {
+        InetAddress inetAddress = getLocalHostLanAddress();
+        if (inetAddress == null) {
+            return null;
+        }
+        return inetAddress.getHostAddress();
+    }
+
+    /**
+     * 获取本机IP地址
+     *
      * @return {@link InetAddress} 本机IP地址
      */
-    public static InetAddress getLocalHostLANAddress() {
+    public static InetAddress getLocalHostLanAddress() {
         InetAddress candidateAddress = null;
         try {
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
             // 遍历所有的网络接口
             while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface networkInterface = (NetworkInterface) networkInterfaces.nextElement();
+                NetworkInterface networkInterface = networkInterfaces.nextElement();
                 Enumeration<InetAddress> inetAddrs = networkInterface.getInetAddresses();
                 // 在所有的接口下再遍历IP
                 while (inetAddrs.hasMoreElements()) {
-                    InetAddress inetAddr = (InetAddress) inetAddrs.nextElement();
+                    InetAddress inetAddr = inetAddrs.nextElement();
                     // 排除loopback类型地址
                     if (!inetAddr.isLoopbackAddress()) {
                         if (inetAddr.isSiteLocalAddress()) {

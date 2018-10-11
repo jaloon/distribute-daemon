@@ -1,7 +1,6 @@
 package com.pltone;
 
 import com.pltone.cnf.ServiceProperties;
-import com.pltone.init.FilePathInit;
 import com.pltone.init.SqliteDbInit;
 import com.pltone.log.LogConfig;
 import com.pltone.ws.ElockServer;
@@ -24,8 +23,6 @@ public class Main {
      */
     public static void init() {
         LogConfig.initLog4j();
-        FilePathInit.init();
-        // LogConfig.addDailyFileAppender();
         ServiceProperties.init();
         SqliteDbInit.init();
     }
