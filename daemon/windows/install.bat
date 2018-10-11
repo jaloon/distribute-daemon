@@ -6,7 +6,7 @@ set SERVICE_CH_NAME=普利通物流配送接口
 
 rem 设置程序依赖及程序入口类
 set BASEDIR=%CD%
-set CLASSPATH=%BASEDIR%\distribute-2.1.0.jar;%BASEDIR%\lib\*
+set CLASSPATH=%BASEDIR%\distribute-2.1.1.jar;%BASEDIR%\lib\*
 set MAIN_CLASS=com.pltone.daemon.WindowsDaemon
 
 rem 设置prunsrv路径 
