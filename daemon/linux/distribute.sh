@@ -15,7 +15,7 @@ cd ${APP_HOME}
 CLASS_PATH="$PWD/classes":"$PWD/lib/*"
 
 #程序入口类
-CLASS=com.pltone.daemon.LinuxDaemon
+CLASS=com.pltone.seal.distforward.daemon.LinuxDaemon
 
 #程序ID文件
 PID=${APP_HOME}/${SERVICE_NAME}.pid
