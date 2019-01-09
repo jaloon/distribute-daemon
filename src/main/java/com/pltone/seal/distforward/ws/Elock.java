@@ -176,7 +176,7 @@ public class Elock {
      */
     public final void forwardToRt(ForwardXmlState forwardXmlState) {
         if (forwardRt) {
-            forward(forwardXmlState, "瑞通", distXmlDao::updateRtForwardState);
+            forward(forwardXmlState, rtWsAddr, "瑞通", distXmlDao::updateRtForwardState);
         }
     }
 
@@ -187,7 +187,7 @@ public class Elock {
      */
     public final void forwardToPlt(ForwardXmlState forwardXmlState) {
         if (forwardPlt) {
-            forward(forwardXmlState, "普利通", distXmlDao::updatePltForwardState);
+            forward(forwardXmlState, pltWsAddr, "普利通", distXmlDao::updatePltForwardState);
         }
     }
 
@@ -195,15 +195,16 @@ public class Elock {
      * 转发
      *
      * @param forwardXmlState 转发报文状态信息
+     * @param wsAddr          转发到的WebService服务器地址
      * @param tips            提示信息
      * @param consumer        数据库操作函数
      */
-    private void forward(ForwardXmlState forwardXmlState, String tips, Consumer<ForwardXmlState> consumer) {
+    private void forward(ForwardXmlState forwardXmlState, String wsAddr, String tips, Consumer<ForwardXmlState> consumer) {
         cachedThreadPool.execute(() -> {
             long id = forwardXmlState.getId();
             int repeatCount = 0;
             while (repeatCount < FORWARD_REPEAT_MAX) {
-                String rtReply = ElockClient.setPlan(pltWsAddr, forwardXmlState.getXml());
+                String rtReply = ElockClient.setPlan(wsAddr, forwardXmlState.getXml());
                 if (rtReply.equals(REPLY_MESSAGE_SUCCESS)) { // 转发成功
                     forwardXmlState.setState(FORWARD_STATE_DONE);
                     logger.info(

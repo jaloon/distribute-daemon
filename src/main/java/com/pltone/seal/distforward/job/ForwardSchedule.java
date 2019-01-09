@@ -51,7 +51,8 @@ public class ForwardSchedule {
         // 1>相比于Timer的单线程，它是通过线程池的方式来执行任务的
         // 2>可以很灵活的去设定第一次执行任务delay时间
         // 3>提供了良好的约定，以便设定执行的时间间隔
-        ScheduledExecutorService service = Executors.newScheduledThreadPool(4, ThreadUtil.newThreadFactory("Resend-Schedule-"));
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(4,
+                ThreadUtil.newThreadFactory("Resend-Schedule-"));
         // 参数：1、任务体 2、首次执行的延时时间 3、任务执行间隔 4、间隔时间单位
         service.scheduleAtFixedRate(task, 10, 10, TimeUnit.MINUTES);
         return service;
@@ -75,16 +76,23 @@ public class ForwardSchedule {
         forwardStateCache.prune();
         List<ForwardXmlState> cacheList = forwardStateCache.values();
         if (cacheList.size() > 0) {
-            List<ForwardXmlState> rmList = cacheList.stream().filter(ForwardXmlState::isDone).collect(Collectors.toList());
-            list.removeIf(forwardXmlState -> {
-                for (ForwardXmlState rm : rmList) {
-                    if (forwardXmlState.getId() == rm.getId()) {
-                        return true;
+            List<ForwardXmlState> rmList = cacheList.stream()
+                    .filter(ForwardXmlState::isDone).collect(Collectors.toList());
+            if (rmList.size() > 0) {
+                list.removeIf(forwardXmlState -> {
+                    for (ForwardXmlState rm : rmList) {
+                        if (forwardXmlState.getId() == rm.getId()) {
+                            return true;
+                        }
                     }
-                }
-                return false;
-            });
-            list.addAll(cacheList.parallelStream().filter(ForwardXmlState::isFail).collect(Collectors.toList()));
+                    return false;
+                });
+            }
+            List<ForwardXmlState> addList = cacheList.stream()
+                    .filter(ForwardXmlState::isFail).collect(Collectors.toList());
+            if (addList.size() > 0) {
+                list.addAll(addList);
+            }
         }
         return list;
     }
